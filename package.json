@@ -1,0 +1,45 @@
+{
+  "name": "vue-computed-validator",
+  "version": "1.0.0",
+  "description": "Vue.js validation plugin that depends on computed properties.",
+  "main": "dist/vue-computed-validator.js",
+  "scripts": {
+    "build": "webpack",
+    "build:browser": "webpack  --env.build=var",
+    "build:node": "webpack  --env.build=umd",
+    "test": "jest"
+  },
+  "author": {
+    "name": "Mohammed Al-Mahdawi",
+    "email": "mohammed@al-mahdawi.com",
+    "url": "https://al-mahdawi.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MohammedAl-Mahdawi/vue-computed-validator"
+  },
+  "keywords": [
+    "vuejs",
+    "vue",
+    "validation",
+    "validator",
+    "inputs",
+    "vue-computed-validator",
+    "form"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^3.9.1",
+    "eslint-loader": "^1.6.1",
+    "jest": "^23.5.0",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.12"
+  },
+  "dependencies": {}
+}

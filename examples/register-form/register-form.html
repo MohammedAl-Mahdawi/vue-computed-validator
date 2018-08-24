@@ -1,0 +1,199 @@
+<!-- 
+    The following code just an example to give you an idea on how to use the plugin and it may not be suitable for production use.
+ -->
+
+<!-- 
+     NOTE: The following form styles and HTML inspired by https://www.w3schools.com/howto/howto_css_register_form.asp 
+     and 
+     https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/
+  -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Computed Validator</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 5px;
+            margin-right: 0;
+            margin-bottom: 11px;
+            margin-left: 0;
+
+
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        label {
+            margin-top: 11px;
+            display: inline-block;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit/register button */
+        .registerbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+        /* Add a blue text color to links */
+        a {
+            color: dodgerblue;
+        }
+
+        input.red-border {
+            border: 1px solid red;
+        }
+
+        .red-text {
+            color: red;
+        }
+
+        .help-text {
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        button:disabled,
+        button[disabled] {
+            background-color: #cccccc;
+            color: #666666;
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        form {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        blockquote {
+            background: #f9f9f9;
+            border-left: 10px solid #ccc;
+            margin: 1.5em 10px;
+            padding: 0.5em 10px;
+            quotes: "\201C""\201D""\2018""\2019";
+        }
+
+        blockquote:before {
+            color: #ccc;
+            content: open-quote;
+            font-size: 4em;
+            line-height: 0.1em;
+            margin-right: 0.25em;
+            vertical-align: -0.4em;
+        }
+
+        blockquote p {
+            display: inline;
+        }
+    </style>
+    <script src="vue.js"></script>
+    <script src="../../dist/vue-computed-validator.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form>
+            <div class="container">
+                <blockquote>
+                    The following form will only allow you to submit it if the email is correct and the password length is 6 or higher and the
+                    Repeat Password field contain the same password.
+                </blockquote>
+                <h1>Register</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+
+                <label :class="{'red-text': !VCVisValid('email') && isTouched('email')}" for="email"><b>Email</b></label>
+                <input :class="{'red-border': !VCVisValid('email') && isTouched('email')}" @blur="touch('email')" type="text" placeholder="Enter Email"
+                    v-model="email">
+                <span v-if="!VCVisValid('email') && isTouched('email')" class="red-text help-text">Email field is required!</span>
+
+                <label :class="{'red-text': !VCVisValid('password') && isTouched('password')}" for="psw"><b>Password</b></label>
+                <input @blur="touch('password')" type="password" placeholder="Enter Password" v-model="password">
+                <span v-if="!VCVisValid('password') && isTouched('password')" class="red-text help-text">Password field is
+                    required!
+                </span>
+
+                <label :class="{'red-text': !VCVisValid('passwordConfirmation') && isTouched('passwordConfirmation')}" for="psw-repeat"><b>Repeat
+                        Password
+                    </b></label>
+                <input @blur="touch('passwordConfirmation')" type="password" placeholder="Repeat Password" v-model="passwordConfirmation">
+                <span v-if="!VCVisValid('passwordConfirmation') && isTouched('passwordConfirmation')" class="red-text help-text">Password
+                    does not match!</span>
+                <hr>
+
+                <button :disabled="!isAllValid()" type="submit" class="registerbtn">Register</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        Vue.use(VueComputedValidator)
+        new Vue({
+            el: '#app',
+            data: {
+                email: '',
+                password: "",
+                passwordConfirmation: ""
+            },
+            created: function () {
+                this.fieldsRules = {
+                    email: ["isRequire", "isEmail"],
+                    password: ["isRequire", "isMinimum"],
+                    passwordConfirmation: ["isEqual"]
+                };
+            },
+            methods: {
+
+            },
+            computed: {
+                fieldsValues: function () {
+                    return {
+                        email: [this.email],
+                        password: [this.password, 6],
+                        passwordConfirmation: [this.password, this.passwordConfirmation]
+                    };
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
