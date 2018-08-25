@@ -1,6 +1,6 @@
 # Vue Computed Validator
 
-Vue.js Form validation plugin that depends on the property not the HTML element on validating with no dependency and respect to Vue reactivity.
+Vue.js form validation plugin that depends on the property not the HTML element on validating with no dependency and respect to Vue reactivity.
 
 
 ## Table of Contents
@@ -64,7 +64,7 @@ Vue.use(VueComputedValidator);
 </script>
 ```
 
-Then in your component initialization life cycle hook that you use like `beforeMount` or `created` put the `fieldsRules` object like:
+Then in your component initialization lifecycle hook that you use like `beforeMount` or `created` put the `fieldsRules` object like:
 
 ```javascript
 created: function () {
@@ -75,7 +75,7 @@ created: function () {
     };
 }
 ```
-The above code tells Vue Computed Validator general information about the fields that must be care about and which rules must be implemented on each one. Here we tell Vue Computed Validator that there are three fields we want you to validate and these fields are `email`, `password` and `passwordConfirmation` and tells it that the `email` must be required using `isRequire` rule and must be email using `isEmail` also the `password` is required and has a minimum requirements using `isMinimum` then finally the `passwordConfirmation` field must be equal to some value using `isEqual` rule.
+The above code tells Vue Computed Validator general information about the fields that must care about and which rules must be implemented on each one. Here we tell Vue Computed Validator that there are three fields we want you to validate and these fields are `email`, `password`, and `passwordConfirmation` and tells it that the `email` must be required using `isRequire` rule and must be email using `isEmail` also the `password` is required and has a minimum requirements using `isMinimum` then finally the `passwordConfirmation` field must be equal to some value using `isEqual` rule.
 
 Then in the `computed` properties section you give `Vue Computed Validator` the fields values using `fieldsValues` computed property like the following:
 
@@ -92,32 +92,27 @@ computed: {
 ```
 Here we tell Vue Computed Validator from where should it take the fields values for example here we tell it that the value for the password field that we set it earlier take it from `this.password` property and this property could be computed or a data member property or form any other possible way.
 
-Here is what will be done for the password field, first `Vue Computed Validator` will implement the first rule that we set it earlier for this field which it `isRequire` rule this rule expect one parameter which is the value of the field and here we give it the value from `this.password` property and `Vue Computed Validator` will implement the second rule which is `isMinimum` and this rule expect two parameter the field value and the limit and here `Vue Computed Validator` give `isMinimum` rule `this.password` as a value and `6` as a limit so the field value must be at least `6` characters length in order to be valid.
+Here is what will be done for the password field, first `Vue Computed Validator` will implement the first rule that we set it earlier for this field which it `isRequire` rule this rule expect one parameter which is the value of the field and here we give it the value from `this.password` property and `Vue Computed Validator` will implement the second rule which is `isMinimum` and this rule expect two parameters the field value and the limit and here `Vue Computed Validator` give `isMinimum` rule `this.password` as a value and `6` as a limit so the field value must be at least `6` characters length in order to be valid.
 
 **In the examples folder there is a working registration form sample you can take a look at it if you want.**
-
-
-
-
-
 
 ### Validation Rules
 
 <a name="rules"></a>
 
-> Vue Computed Validator does not have a lot rules currently however please request any rule that you need and I'll will add it ASAP with my pleasure.
+> Vue Computed Validator does not have a lot of rules currently, however, please request any rule that you need and I'll add it ASAP with my pleasure.
 
-- **isRequire**: This rule expect one parameter and return true if the parameter has a value and false otherwise.
+- **isRequire**: This rule expects one parameter and returns true if the parameter has a value and false otherwise.
 
-- **isEmail**: This rule expect one string parameter and return true if the parameter is email and false otherwise.
+- **isEmail**: This rule expects one string parameter and returns true if the parameter is email and false otherwise.
 
-- **isEqual**: This rule expect two parameter and return true if the parameters is equal and false otherwise.
+- **isEqual**: This rule expects two parameters and returns true if the parameters are equal and false otherwise.
 
-- **isIqMobile**: This rule expect one parameter and return true if the parameter is Iraqi mobile number and false otherwise.
+- **isIqMobile**: This rule expects one parameter and returns true if the parameter is Iraqi mobile number and false otherwise.
 
-- **isIqZip**: This rule expect one parameter and return true if the parameter is Iraqi zip code and false otherwise.
+- **isIqZip**: This rule expects one parameter and returns true if the parameter is Iraqi zip code and false otherwise.
 
-- **isMaximum**: This rule expect two parameters for example string or array for the first parameter and number for the second one and return true if the first parameter has maximum that number of elements/characters and false otherwise.
+- **isMaximum**: This rule expects two parameters for example string or array for the first parameter and number for the second one and returns true if the first parameter has maximum that number of elements/characters and false otherwise.
 
     For example:
     ```javascript
@@ -126,7 +121,7 @@ Here is what will be done for the password field, first `Vue Computed Validator`
         isMaximum([[1, 2, 3, 4], 2]) //return false
     ```
 
-- **isMinimum**: This rule expect two parameters for example string or array for the first parameter and number for the second one and return true if the first parameter has at least that number of elements/characters and false otherwise.
+- **isMinimum**: This rule expects two parameters for example string or array for the first parameter and number for the second one and returns true if the first parameter has at least that number of elements/characters and false otherwise.
 
     For example:
     ```javascript
@@ -135,8 +130,7 @@ Here is what will be done for the password field, first `Vue Computed Validator`
         isMinimum([[1, 2, 3], 4]) //return false
     ```
 
-- **isNotEqual**: This rule expect two parameter and return true if the parameters is not equal and false otherwise.
-
+- **isNotEqual**: This rule expects two parameters and returns true if the parameters are not equal and false otherwise.
 
 ### Helper Functions
 
