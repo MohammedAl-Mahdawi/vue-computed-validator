@@ -1,4 +1,11 @@
 const path = require('path');
+import webpack from 'webpack';
+const version = process.env.VERSION || require('./package.json').version
+
+const banner =
+  'Vue Computed Validator v' + version + '\n' +
+  '(c) ' + new Date().getFullYear() + ' Mohammed Al-Mahdawi\n' +
+  'Released under the MIT License.'
 
 export default () => (
     {
@@ -21,5 +28,10 @@ export default () => (
                 }
             ]
         },
+        plugins: [
+            new webpack.BannerPlugin({
+                banner
+            })
+        ]
     }
 );
