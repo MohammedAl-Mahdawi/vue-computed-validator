@@ -1,5 +1,5 @@
 /*!
- * Vue Computed Validator v1.0.2
+ * Vue Computed Validator v1.0.3
  * (c) 2018 Mohammed Al-Mahdawi
  * Released under the MIT License.
  */

@@ -1,6 +1,6 @@
 {
   "name": "vue-computed-validator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue.js validation plugin that depends on computed properties.",
   "main": "dist/vue-computed-validator.js",
   "scripts": {
